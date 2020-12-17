@@ -1,0 +1,20 @@
+.bg-404 {
+    background: url("bg404.png") center / cover no-repeat;
+}
+
+.box-404 {
+    width: 90%;
+    max-width: 480px;
+    min-height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(calc(-50%), -50%);
+}
+
+.box-404 h1 {
+    font-size: 140px;
+}
+.box-404 p {
+    font-size: 25px;
+}

@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import './shared/app.css';
+
+import PreloadImages from "./redux_setup/preloadImagesComponent";
+
+import Navbar from "./modules/navbar/navbarComponent";
+import Footer from "./modules/footer/footerComponent";
+import Routes from "./modules/routes/routesComponent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <PreloadImages/>
+        <Navbar/>
+        <Routes/>
+        <Footer/>
+    </>
   );
 }
 
