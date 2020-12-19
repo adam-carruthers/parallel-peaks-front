@@ -1,0 +1,1 @@
+export const baseUrl = 'https://57c85187-4379-40ce-bf26-00bfb21d29d0.mock.pstmn.io';

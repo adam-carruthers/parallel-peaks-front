@@ -1,8 +1,8 @@
-.bg-404 {
-    background: url("bg404.png") center / cover no-repeat;
+.bg-not-allowed {
+    background: url("bgNotAllowed.png") center / cover no-repeat;
 }
 
-.box-404 {
+.box-not-allowed {
     width: 90%;
     max-width: 480px;
     min-height: 300px;
@@ -12,9 +12,10 @@
     transform: translate(calc(-50%), -50%);
 }
 
-.box-404 h1 {
+.box-not-allowed h1 {
     font-size: 140px;
 }
-.box-404 p {
+
+.box-not-allowed p {
     font-size: 25px;
 }

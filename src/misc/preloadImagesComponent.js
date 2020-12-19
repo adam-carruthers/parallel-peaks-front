@@ -1,6 +1,6 @@
 import {Helmet} from "react-helmet";
 import justWaves from '../shared/img/just-waves.png';
-import bg404 from'../modules/page404/bg404.png';
+import bg404 from '../modules/notAllowedPages/bgNotAllowed.png';
 
 const PreloadImages = () => (
     <Helmet>

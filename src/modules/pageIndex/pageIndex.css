@@ -1,6 +1,6 @@
 .section-1-index {
     background: url(bgVinyl.jpg) right / cover no-repeat;
-    padding: 20vh max(5%, 30px);
+    padding: max(20vh, 110px) max(5%, 30px) 20vh;
     min-height: 100vh;
 }
 

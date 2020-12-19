@@ -1,0 +1,13 @@
+Test that if you're logged in the navbar displays the correct things:
+- if you're not logged in
+- if you're logged in and a non-matcher
+- if you're logged in and a matcher
+Check that when you're trying to login that:
+- you can login with the correct deets
+- an appropriate error displays when you have the wrong deets
+- an appropriate error displays when you have no internet
+- an appropriate error displays when you get a non-200 response
+Check that when you login you get redirected appropriately:
+- to /matcher-home if you're a matcher
+- to /profile if you're a non-matcher
+- to /protected-route for both matchers and non-matchers, if you hit a 401 there and were sent to login

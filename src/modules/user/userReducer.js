@@ -1,10 +1,27 @@
+import {persistReducer} from "redux-persist";
+import storage from 'redux-persist/lib/storage';
+
+import {userActionTypes} from "./userActions";
+
 const initialState = null;
 
 const userReducer = (state = initialState, action) => {
+    console.log(action.type);
+    console.log(userActionTypes.logout);
+    console.log(initialState);
     switch (action.type) {
+        case userActionTypes.setUser:
+            return action.payload;
+        case userActionTypes.logout:
+            return initialState;
         default:
             return state;
     }
 }
 
-export default userReducer;
+const userPersistConfig = {
+    key: 'user',
+    storage
+}
+
+export default persistReducer(userPersistConfig, userReducer);

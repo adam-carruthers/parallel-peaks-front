@@ -6,15 +6,21 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 
 import {Provider} from 'react-redux';
-import createMyStore from "./redux_setup/configureStore";
+import createMyStore from "./misc/configureStore";
+import {PersistGate} from "redux-persist/integration/react";
 
-const store = createMyStore();
+import PreloadImages from "./misc/preloadImagesComponent";
+
+const {store, persistor} = createMyStore();
 
 ReactDOM.render(
     <React.StrictMode>
+        <PreloadImages/>
         <BrowserRouter>
             <Provider store={store}>
-                <App/>
+                <PersistGate loading={() => (<span>hi</span>)} persistor={persistor}>
+                    <App/>
+                </PersistGate>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,
