@@ -6,9 +6,6 @@ import {userActionTypes} from "./userActions";
 const initialState = null;
 
 const userReducer = (state = initialState, action) => {
-    console.log(action.type);
-    console.log(userActionTypes.logout);
-    console.log(initialState);
     switch (action.type) {
         case userActionTypes.setUser:
             return action.payload;

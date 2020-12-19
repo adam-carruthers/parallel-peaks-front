@@ -9,10 +9,6 @@ import Page401 from "../notAllowedPages/page401Component";
 const RouteNeedLogin = ({children, ...rest}) => {
     const userLoggedIn = useSelector(userIsLoggedIn);
 
-    useEffect(() => (
-        console.log(userLoggedIn)
-    ))
-
     return (
         <Route {...rest}>
             {userLoggedIn ? (
