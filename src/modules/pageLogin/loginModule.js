@@ -1,12 +1,13 @@
-import loginReducer from './loginSlice';
+import loginReducer, {loginActions} from './loginSlice';
 import {loginSaga} from "./loginSaga";
 
-const LoginModule = ({history, redirectUrl}) => ({
+const LoginModule = () => ({
     id: 'login',
     reducerMap: {
         loginRequest: loginReducer
     },
-    sagas: [{saga: loginSaga, argument: {history, redirectUrl}}]
+    sagas: [loginSaga],
+    initialActions: [loginActions.setIdle()]
 })
 
 export default LoginModule;

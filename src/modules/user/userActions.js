@@ -1,6 +1,7 @@
 export const userActionTypes = {
     setUser: 'user/SET_USER',
-    logout: 'user/LOGOUT'
+    logout: 'user/LOGOUT',
+    refresh: 'user/REFRESH'
 }
 
 export const userActions = {
@@ -10,5 +11,8 @@ export const userActions = {
     }),
     logout: () => ({
         type: userActionTypes.logout
+    }),
+    refresh: () => ({
+        type: userActionTypes.refresh
     })
 }

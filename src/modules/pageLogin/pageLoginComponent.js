@@ -25,7 +25,7 @@ const PageLoginInner = () => {
                 loginActions.start(usernameRef.current.value, passwordRef.current.value);
             }
         }>
-            <formset disabled={loginStatus === 'loading'}>
+            <fieldset disabled={loginStatus === 'loading'}>
                 {loginStatus === 'error' && (
                     <div className="error-login text-danger mb-2">
                         <i className="fas fa-exclamation-triangle mr-1"/> {loginError}
@@ -38,20 +38,19 @@ const PageLoginInner = () => {
                     <input ref={passwordRef} className="form-control" type="password" placeholder="Password"/>
                 </div>
                 <div className="form-group">
-                    <button
+                    <input
                         className="btn btn-primary btn-block"
-                        type="button"
+                        type="submit"
                         onClick={() => dispatch(
                             loginActions.start(usernameRef.current.value, passwordRef.current.value)
                         )}
-                    >
-                        {loginStatus === 'loading' ? <i className="fas fa-circle-notch fa-spin"/> : 'Submit'}
-                    </button>
+                        value={loginStatus === 'loading' ? 'Loading...' : 'Submit'}
+                    />
                 </div>
                 <a href="#" className="forgot-login text-secondary">
                     Forgot your username or password?
                 </a>
-            </formset>
+            </fieldset>
         </form>
     );
 }

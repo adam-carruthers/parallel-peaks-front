@@ -1,6 +1,6 @@
 import {baseUrl} from "../../misc/api";
 
-export const loginUrl = `${baseUrl}/login`;
+export const loginUrl = `${baseUrl}/api/auth/login`;
 
 export const getLoginFetchArgs = (username, password) => [
     loginUrl,

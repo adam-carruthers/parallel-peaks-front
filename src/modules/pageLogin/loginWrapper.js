@@ -17,10 +17,6 @@ const LoginWrapper = ({children}) => {
     const userLoggedIn = useSelector(userIsLoggedIn);
     const userMatcher = useSelector(userIsMatcher);
 
-    const history = useHistory();
-    const location = useLocation();
-    const redirectUrl = location.state?.redirectUrl;
-
     useEffect(() => {
         if(userLoggedIn) {
             new Noty({
@@ -32,10 +28,12 @@ const LoginWrapper = ({children}) => {
         }
     }, [])
 
+    const locationRedirectUrl = useSelector(state => state.router?.location?.state?.redirectUrl);
+
     return userLoggedIn ? (
-        <Redirect to={userMatcher ? '/matcher-home' : '/profile'}/>
+        <Redirect to={locationRedirectUrl || (userMatcher ? '/matcher-home' : '/profile')}/>
     ) : (
-        <DynamicModuleLoader modules={[LoginModule({history, redirectUrl})]}>{children}</DynamicModuleLoader>
+        <DynamicModuleLoader modules={[LoginModule()]}>{children}</DynamicModuleLoader>
     )
 }
 

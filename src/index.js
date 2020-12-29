@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import {BrowserRouter} from "react-router-dom";
+import {createBrowserHistory} from 'history';
+import {ConnectedRouter} from "connected-react-router";
 
 import {Provider} from 'react-redux';
 import createMyStore from "./misc/configureStore";
@@ -11,18 +12,19 @@ import {PersistGate} from "redux-persist/integration/react";
 
 import PreloadImages from "./misc/preloadImagesComponent";
 
-const {store, persistor} = createMyStore();
+const history = createBrowserHistory();
+const {store, persistor} = createMyStore(history);
 
 ReactDOM.render(
     <React.StrictMode>
         <PreloadImages/>
-        <BrowserRouter>
-            <Provider store={store}>
-                <PersistGate loading={() => (<span>hi</span>)} persistor={persistor}>
+        <Provider store={store}>
+            <ConnectedRouter history={history}>
+                <PersistGate loading={null} persistor={persistor}>
                     <App/>
                 </PersistGate>
-            </Provider>
-        </BrowserRouter>
+            </ConnectedRouter>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );

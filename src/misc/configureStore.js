@@ -5,13 +5,15 @@ import { getSagaExtension } from "redux-dynamic-modules-saga";
 import {persistStore} from "redux-persist";
 
 import UserModule from "../modules/user/userModule";
+import RouterModule, {getRouterExtension} from "../modules/routes/routerModule";
 
-export default function createMyStore() {
+export default function createMyStore(history) {
     const store = createStore({
-            extensions: [getSagaExtension()],
-            advancedComposeEnhancers: composeWithDevTools({trace: true})
+            extensions: [getRouterExtension(history), getSagaExtension()],
+            advancedComposeEnhancers: composeWithDevTools({})
         },
-        UserModule
+        UserModule,
+        RouterModule(history)
     )
 
     const persistor = persistStore(store);

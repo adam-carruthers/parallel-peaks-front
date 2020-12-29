@@ -8,7 +8,10 @@ const initialState = null;
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case userActionTypes.setUser:
-            return action.payload;
+            return {
+                ...action.payload,
+                token: action.payload.token || state?.token,
+            };
         case userActionTypes.logout:
             return initialState;
         default:

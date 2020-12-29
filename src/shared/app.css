@@ -45,7 +45,7 @@ body {
 }
 
 .pp-box-shadow {
-  box-shadow: 7px 7px rgb(0,0,0);
+  box-shadow: 7px 7px rgb(0,0,0)!important;
 }
 
 .pp-box-shadow-small {
@@ -69,6 +69,12 @@ body {
 
 .pp-brand-shadow {
   text-shadow: 2px 2px #000000, 4px 4px var(--indigo);
+}
+
+.make-children-blocky {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .make-children-blocky > * {
@@ -125,9 +131,14 @@ body {
   box-shadow: none!important;
 }
 
+.btn-group.pp-box-shadow-small .btn:active,
 .btn.pp-box-shadow-small:active,
 .btn-pp:active {
   transform: translate(3px, 3px);
+}
+
+.btn-group.pp-box-shadow-small .btn:active {
+  z-index: 0;
 }
 
 .btn.pp-box-shadow:active,

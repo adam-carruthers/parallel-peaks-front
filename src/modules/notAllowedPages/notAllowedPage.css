@@ -6,10 +6,6 @@
     width: 90%;
     max-width: 480px;
     min-height: 300px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(calc(-50%), -50%);
 }
 
 .box-not-allowed h1 {

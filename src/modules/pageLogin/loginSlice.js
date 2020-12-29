@@ -18,6 +18,9 @@ export const loginActions = {
     error: error => ({
         type: loginActionTypes.error,
         error
+    }),
+    setIdle: () => ({
+        type: loginActionTypes.setIdle
     })
 }
 

@@ -6,15 +6,18 @@ import {getLoginFetchArgs} from "./loginApi";
 import {userActions} from '../user/userActions';
 import {userIsMatcher} from "../user/userSelectors";
 
-function* login(history, redirectUrl, action) {
+import {push} from 'connected-react-router';
+
+function* login(action) {
     try {
         const response = yield call(fetch, ...getLoginFetchArgs(action.username, action.password));
         const json = yield call([response, 'json']);
 
         if (response.status !== 200) {
             console.error(json);
-            if (json.message) {
-                yield put(loginActions.error(json.message))
+            // For this particular endpoint I think it is guaranteed that all errors will be non-field errors
+            if (json.non_field_errors) {
+                yield put(loginActions.error(json.non_field_errors.join(' - ')))
             } else {
                 yield put(loginActions.error('There was an unexpected error, please try again.'));
             }
@@ -24,25 +27,13 @@ function* login(history, redirectUrl, action) {
         yield put(userActions.setUser({
             ...json.user,
             token: json.token
-        }));
-
-        if(redirectUrl) {
-            history.push(redirectUrl);
-            return;
-        }
-
-        const userMatcher = yield select(userIsMatcher);
-        if (userMatcher) {
-            history.push('/matcher-home')
-        } else {
-            history.push('/profile')
-        }
+        }));  // Doing this will auto redirect the user because loginWrapper will load a Redirect on state change.
     } catch(e) {
         console.error(e);
         yield put(loginActions.error('There was an error, check your internet and try again.'));
     }
 }
 
-export function* loginSaga({history, redirectUrl}) {
-    yield takeLatest(loginActionTypes.start, login, history, redirectUrl);
+export function* loginSaga() {
+    yield takeLatest(loginActionTypes.start, login);
 }

@@ -6,6 +6,7 @@ import Page401 from "../notAllowedPages/page401Component";
 import RouteNeedLogin from "./routeNeedLogin";
 import RouteNeedMatcher from "./routeNeedMatcher";
 import PageLogout from "../user/pageLogout";
+import PageProfile from "../pageProfile/pageProfileComponent";
 
 const Routes = () => (
     <Switch>
@@ -19,9 +20,7 @@ const Routes = () => (
             <PageLogout/>
         </Route>
         <RouteNeedLogin path="/profile">
-            <div className="pp-first-section">
-                <h1>PROFILE TO BE BUILT</h1>
-            </div>
+            <PageProfile/>
         </RouteNeedLogin>
         <RouteNeedMatcher path="/matcher-home">
             <div className="pp-first-section">
