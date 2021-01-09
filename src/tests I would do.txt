@@ -8,6 +8,5 @@ Check that when you're trying to login that:
 - an appropriate error displays when you have no internet
 - an appropriate error displays when you get a non-200 response
 Check that when you login you get redirected appropriately:
-- to /matcher-home if you're a matcher
-- to /profile if you're a non-matcher
-- to /protected-route for both matchers and non-matchers, if you hit a 401 there and were sent to login
+- to /home apart from when you go
+- to /protected-route if you hit a 401 there and were sent to login

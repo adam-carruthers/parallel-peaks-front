@@ -3,19 +3,15 @@
  */
 import {useEffect} from 'react';
 
-import {Redirect, useHistory, useLocation} from 'react-router-dom';
-
-import {DynamicModuleLoader} from 'redux-dynamic-modules';
-import LoginModule from "./loginModule";
+import {Redirect} from 'react-router-dom';
 
 import {useSelector} from "react-redux";
-import {userIsLoggedIn, userIsMatcher} from "../user/userSelectors";
+import {userIsLoggedIn} from "../user/userSelectors";
 
 import Noty from 'noty';
 
 const LoginWrapper = ({children}) => {
     const userLoggedIn = useSelector(userIsLoggedIn);
-    const userMatcher = useSelector(userIsMatcher);
 
     useEffect(() => {
         if(userLoggedIn) {
@@ -31,9 +27,9 @@ const LoginWrapper = ({children}) => {
     const locationRedirectUrl = useSelector(state => state.router?.location?.state?.redirectUrl);
 
     return userLoggedIn ? (
-        <Redirect to={locationRedirectUrl || (userMatcher ? '/matcher-home' : '/profile')}/>
+        <Redirect to={locationRedirectUrl || '/home'}/>
     ) : (
-        <DynamicModuleLoader modules={[LoginModule()]}>{children}</DynamicModuleLoader>
+        <>{children}</>
     )
 }
 

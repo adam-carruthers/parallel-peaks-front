@@ -2,9 +2,7 @@ import {Switch, Route} from 'react-router-dom';
 import Page404 from "../notAllowedPages/page404Component";
 import PageIndex from "../pageIndex/pageIndexComponent";
 import PageLogin from "../pageLogin/pageLoginComponent";
-import Page401 from "../notAllowedPages/page401Component";
 import RouteNeedLogin from "./routeNeedLogin";
-import RouteNeedMatcher from "./routeNeedMatcher";
 import PageLogout from "../user/pageLogout";
 import PageProfile from "../pageProfile/pageProfileComponent";
 
@@ -22,11 +20,11 @@ const Routes = () => (
         <RouteNeedLogin path="/profile">
             <PageProfile/>
         </RouteNeedLogin>
-        <RouteNeedMatcher path="/matcher-home">
+        <RouteNeedLogin path="/home">
             <div className="pp-first-section">
-                <h1>MATCHER HOME TO BE BUILT</h1>
+                <h1>HOME TO BE BUILT</h1>
             </div>
-        </RouteNeedMatcher>
+        </RouteNeedLogin>
         <Route path="*">
             <Page404/>
         </Route>

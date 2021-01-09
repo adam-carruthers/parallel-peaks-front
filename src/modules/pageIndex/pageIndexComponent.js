@@ -8,14 +8,13 @@ import {userIsLoggedIn, userIsMatcher} from "../user/userSelectors";
 
 const PageIndexInner = () => {
     const userLoggedIn = useSelector(userIsLoggedIn);
-    const userMatcher = useSelector(userIsMatcher);
 
     if (userLoggedIn) {
         return (
             <>
-                {userMatcher && <Link to="/matcher-home" className="btn btn-pr btn-pp-ls option-index">
-                    Go to the matcher home <i className="fas fa-arrow-right ml-auto"/>
-                </Link>}
+                <Link to="/home" className="btn btn-pr btn-pp-ls option-index">
+                    Go to your home <i className="fas fa-arrow-right ml-auto"/>
+                </Link>
                 <Link to="/profile" className="btn btn-py btn-pp-ls option-index">
                     See your profile <i className="fas fa-arrow-right ml-auto"/>
                 </Link>

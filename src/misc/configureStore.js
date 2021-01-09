@@ -1,20 +1,35 @@
-import { createStore } from 'redux-dynamic-modules';
-import { composeWithDevTools } from "redux-devtools-extension";
-import { getSagaExtension } from "redux-dynamic-modules-saga";
+import {createStore, applyMiddleware} from "redux";
 
+import createSagaMiddleware from 'redux-saga';
+import userSaga from "../modules/user/userSaga";
+
+import {composeWithDevTools} from "redux-devtools-extension";
+import {routerMiddleware} from "connected-react-router";
 import {persistStore} from "redux-persist";
 
-import UserModule from "../modules/user/userModule";
-import RouterModule, {getRouterExtension} from "../modules/routes/routerModule";
+import createRootReducer from "./rootReducer";
+import dynostore, {dynamicReducers} from "@redux-dynostore/core";
+import {dynamicSagas} from "@redux-dynostore/redux-saga";
 
 export default function createMyStore(history) {
-    const store = createStore({
-            extensions: [getRouterExtension(history), getSagaExtension()],
-            advancedComposeEnhancers: composeWithDevTools({})
-        },
-        UserModule,
-        RouterModule(history)
+    const sagaMiddleware = createSagaMiddleware();
+    const middlewares = [
+        sagaMiddleware,
+        routerMiddleware(history)
+    ];
+    const enhancers = [
+        applyMiddleware(...middlewares),
+        dynostore(dynamicReducers(), dynamicSagas(sagaMiddleware))
+    ];
+    const rootReducer = createRootReducer(history);
+
+    const store = createStore(
+        rootReducer,
+        {},
+        composeWithDevTools(...enhancers)
     )
+
+    sagaMiddleware.run(userSaga);
 
     const persistor = persistStore(store);
 

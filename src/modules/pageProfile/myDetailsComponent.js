@@ -49,6 +49,10 @@ const MyDetails = () => {
                     <i className="fas fa-trash-alt fa-lg mr-2"/>
                     Delete Account
                 </button>
+                <button className="btn btn-pk" type="button">
+                    <i className="fas fa-door-open fa-lg mr-1"/>
+                    Logout of all devices
+                </button>
             </div>
         </div>
     )

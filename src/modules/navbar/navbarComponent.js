@@ -6,7 +6,6 @@ import {userIsLoggedIn, userIsMatcher} from "../user/userSelectors";
 
 const NavbarUserSection = () => {
     const userLoggedIn = useSelector(userIsLoggedIn);
-    const userMatcher = useSelector(userIsMatcher);
 
     if (!userLoggedIn) {
         return (
@@ -20,14 +19,12 @@ const NavbarUserSection = () => {
     } else {
         return (
             <>
-                {userMatcher && (
-                    <li className="nav-item mr-3">
-                        <Link to="/matcher-home" className="nav-link active">
-                            <span className="d-none d-sm-inline">Matcher Home</span>
-                            <i className="fas fa-home ml-2"/>
-                        </Link>
-                    </li>
-                )}
+                <li className="nav-item mr-3">
+                    <Link to="/home" className="nav-link active">
+                        <span className="d-none d-sm-inline">Home</span>
+                        <i className="fas fa-home ml-2"/>
+                    </Link>
+                </li>
                 <li className="nav-item mr-3">
                     <Link to="/profile" className="nav-link active">
                         Me

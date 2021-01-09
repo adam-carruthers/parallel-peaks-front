@@ -1,13 +1,19 @@
 import basicRequestActionTypes from "./basicRequestActionTypes";
 import basicRequestReducer from "./basicRequestReducer";
+import basicRequestActions from "./basicRequestActions";
+import basicRequestSelectors from "./basicRequestSelectors";
 
 const basicRequestSlice = id => {
-    let actions = basicRequestActionTypes(id);
-    let reducer = basicRequestReducer(actions);
+    const actionTypes = basicRequestActionTypes(id);
+    const actions = basicRequestActions(actionTypes);
+    const reducer = basicRequestReducer(actionTypes);
+    const selectors = basicRequestSelectors(id);
 
     return {
         reducer,
-        ...actions
+        actionTypes,
+        actions,
+        selectors
     }
 }
 

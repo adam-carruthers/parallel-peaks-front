@@ -4,16 +4,22 @@ import {useRef} from "react";
 
 import LoginWrapper from "./loginWrapper";
 
+import {loginActions, loginModuleId, loginReducer, loginSelectors} from "./loginSlice";
+import ForgotPassword from "./forgotPassword/forgotPasswordComponent";
+import {loginSaga} from "./loginSaga";
+
 import {useDispatch, useSelector} from "react-redux";
-import {loginRequestStatus, loginActions, loginRequestError} from "./loginSlice";
+import dynamic from "@redux-dynostore/react-redux";
+import {attachReducer, dispatchAction} from "@redux-dynostore/core";
+import {runSaga} from "@redux-dynostore/redux-saga";
 
 // TODO: Implement forgot login stuff
 // TODO: Set minimum character limits on the username and password before the user can submit
 
 const PageLoginInner = () => {
     const dispatch = useDispatch();
-    const loginStatus = useSelector(loginRequestStatus);
-    const loginError = useSelector(loginRequestError);
+    const loginStatus = useSelector(loginSelectors.status);
+    const loginError = useSelector(loginSelectors.error);
 
     const usernameRef = useRef(null);
     const passwordRef = useRef(null);
@@ -22,7 +28,21 @@ const PageLoginInner = () => {
         <form onSubmit={
             e => {
                 e.preventDefault();
-                loginActions.start(usernameRef.current.value, passwordRef.current.value);
+                const username = usernameRef.current.value;
+                if(!username) {
+                    dispatch(loginActions.error("Username is required."));
+                    return;
+                }
+                const password = passwordRef.current.value;
+                if(!password){
+                    dispatch(loginActions.error("Password is required."));
+                    return;
+                }
+                dispatch(
+                    loginActions.start(
+                        {username, password}
+                        )
+                );
             }
         }>
             <fieldset disabled={loginStatus === 'loading'}>
@@ -41,15 +61,9 @@ const PageLoginInner = () => {
                     <input
                         className="btn btn-primary btn-block"
                         type="submit"
-                        onClick={() => dispatch(
-                            loginActions.start(usernameRef.current.value, passwordRef.current.value)
-                        )}
                         value={loginStatus === 'loading' ? 'Loading...' : 'Submit'}
                     />
                 </div>
-                <a href="#" className="forgot-login text-secondary">
-                    Forgot your username or password?
-                </a>
             </fieldset>
         </form>
     );
@@ -65,10 +79,11 @@ const PageLogin = () => (
                     PP
                 </h1>
                 <PageLoginInner/>
+                <ForgotPassword/>
             </div>
             <div className="flex-grow-1 p-4"/>
         </section>
     </LoginWrapper>
 )
 
-export default PageLogin;
+export default dynamic(loginModuleId, attachReducer(loginReducer), runSaga(loginSaga), dispatchAction(loginActions.setIdle()))(PageLogin);

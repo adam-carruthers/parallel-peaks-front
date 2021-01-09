@@ -1,16 +1,13 @@
-import {takeLatest, call, put, select} from 'redux-saga/effects';
+import {takeLatest, call, put} from 'redux-saga/effects';
 
 import {loginActionTypes, loginActions} from './loginSlice';
 import {getLoginFetchArgs} from "./loginApi";
 
 import {userActions} from '../user/userActions';
-import {userIsMatcher} from "../user/userSelectors";
-
-import {push} from 'connected-react-router';
 
 function* login(action) {
     try {
-        const response = yield call(fetch, ...getLoginFetchArgs(action.username, action.password));
+        const response = yield call(fetch, ...getLoginFetchArgs(action.payload.username, action.payload.password));
         const json = yield call([response, 'json']);
 
         if (response.status !== 200) {

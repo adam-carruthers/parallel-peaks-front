@@ -30,7 +30,12 @@
     display: block;
     text-align: center;
     font-size: 12px;
-    text-decoration: none;
+    cursor:pointer;
+    color:blue;
+}
+
+.box-login .forgot-login:hover {
+    text-decoration: underline;
 }
 
 .box-login .error-login {
