@@ -32,12 +32,12 @@ let ForgotPasswordInterior = ({onHide}) => {
         }}>
             <formset disabled={status === 'loading'}>
                 {status === 'error' && (
-                    <div className="error-login text-danger mb-2">
+                    <div className="pp-form-error text-danger mb-2">
                         <i className="fas fa-exclamation-triangle mr-1"/> {errors}
                     </div>
                 )}
                 <div className="form-group">
-                    <input className="form-control" placeholder="Enter your email here..." ref={emailRef}/>
+                    <input type="email" className="form-control" placeholder="Enter your email here..." ref={emailRef}/>
                 </div>
                 <div className="form-group">
                     <input

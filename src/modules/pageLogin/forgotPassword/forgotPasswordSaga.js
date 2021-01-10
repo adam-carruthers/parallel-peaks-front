@@ -33,8 +33,6 @@ function* resetPassword(action) {
     }
 }
 
-function* forgotPasswordSaga() {
+export default function* forgotPasswordSaga() {
     yield takeLatest(forgotPasswordActionTypes.start, resetPassword);
 }
-
-export default forgotPasswordSaga;

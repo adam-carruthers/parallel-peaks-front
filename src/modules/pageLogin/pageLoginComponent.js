@@ -47,7 +47,7 @@ const PageLoginInner = () => {
         }>
             <fieldset disabled={loginStatus === 'loading'}>
                 {loginStatus === 'error' && (
-                    <div className="error-login text-danger mb-2">
+                    <div className="pp-form-error text-danger mb-2">
                         <i className="fas fa-exclamation-triangle mr-1"/> {loginError}
                     </div>
                 )}

@@ -5,6 +5,7 @@ import PageLogin from "../pageLogin/pageLoginComponent";
 import RouteNeedLogin from "./routeNeedLogin";
 import PageLogout from "../user/pageLogout";
 import PageProfile from "../pageProfile/pageProfileComponent";
+import PageForgotPassConfirm from "../pageForgotPassConfirm/pageForgotPassConfirmComponent";
 
 const Routes = () => (
     <Switch>
@@ -16,6 +17,9 @@ const Routes = () => (
         </Route>
         <Route path="/logout">
             <PageLogout/>
+        </Route>
+        <Route path="/forgot-password">
+            <PageForgotPassConfirm/>
         </Route>
         <RouteNeedLogin path="/profile">
             <PageProfile/>

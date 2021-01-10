@@ -73,6 +73,13 @@ body {
   text-shadow: 2px 2px #000000, 4px 4px var(--indigo);
 }
 
+.pp-form-error {
+  display: block;
+  text-align: center;
+  border-radius: .25em;
+  font-size: 15px;
+}
+
 .make-children-blocky {
   display: flex;
   align-items: flex-end;
