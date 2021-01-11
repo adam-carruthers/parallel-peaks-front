@@ -52,10 +52,12 @@ let ForgotPassInner = ({token, uid}) => {
                     </div>
                 )}
                 <div className="form-group">
-                    <input type="password" className="form-control" placeholder="New Password" ref={passRef1}/>
+                    <input type="password" className="form-control" placeholder="New Password" ref={passRef1}
+                           autoComplete="new-password"/>
                 </div>
                 <div className="form-group">
-                    <input type="password" className="form-control" placeholder="Re-enter Password" ref={passRef2}/>
+                    <input type="password" className="form-control" placeholder="Re-enter Password" ref={passRef2}
+                           autoComplete="new-password"/>
                 </div>
                 <div className="form-group">
                     <input type="submit" className="btn btn-primary btn-block" value={status === "loading"?"Loading...":"Submit"}/>
