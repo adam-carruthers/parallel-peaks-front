@@ -1,5 +1,6 @@
 import {useSelector} from "react-redux";
 import {getUser} from "../user/userSelectors";
+import ChangePassword from "./changePassword/changePasswordComponent";
 
 const ADetail = ({name, value, colBreakpoint="col-12 col-md"}) => (
     <div className={colBreakpoint}>
@@ -41,10 +42,7 @@ const MyDetails = () => {
             )}
 
             <div role="group" className="btn-group pp-box-shadow-small mt-2">
-                <button className="btn btn-py" type="button">
-                    <i className="fas fa-pencil-alt fa-lg mr-1"/>
-                    Change Password
-                </button>
+                <ChangePassword/>
                 <button className="btn btn-pr" type="button">
                     <i className="fas fa-trash-alt fa-lg mr-2"/>
                     Delete Account

@@ -155,7 +155,7 @@ body {
   transform: translate(3px, 3px);
 }
 
-.btn-group.pp-box-shadow-small .btn:active {
+.btn-group.pp-box-shadow-small .btn {
   z-index: 0;
 }
 

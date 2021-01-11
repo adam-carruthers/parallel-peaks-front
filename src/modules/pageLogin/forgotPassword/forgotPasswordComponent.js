@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import Modal from 'react-bootstrap/Modal';
 import dynamic from "@redux-dynostore/react-redux";
 import {
-    forgotModuleId,
+    forgotPasswordId,
     forgotPasswordActions,
     forgotPasswordReducer,
     forgotPasswordSelectors
@@ -17,23 +17,26 @@ let ForgotPasswordInterior = ({onHide}) => {
     const dispatch = useDispatch();
 
     const status = useSelector(forgotPasswordSelectors.status);
-    const errors = useSelector(forgotPasswordSelectors.error);
+    const error = useSelector(forgotPasswordSelectors.error);
 
     useEffect(() => {
-        if(status === "success") {
-            onHide();
-        }
+        if(status === "success") onHide();
     })
 
     return (
         <form onSubmit={e => {
             e.preventDefault();
-            dispatch(forgotPasswordActions.start({email: emailRef.current.value}))
+            const email = emailRef.current.value;
+            if (!email) {
+                dispatch(forgotPasswordActions.error("You need to enter an email!"));
+                return;
+            }
+            dispatch(forgotPasswordActions.start({email}));
         }}>
             <formset disabled={status === 'loading'}>
                 {status === 'error' && (
                     <div className="pp-form-error text-danger mb-2">
-                        <i className="fas fa-exclamation-triangle mr-1"/> {errors}
+                        <i className="fas fa-exclamation-triangle mr-1"/> {error}
                     </div>
                 )}
                 <div className="form-group">
@@ -51,37 +54,30 @@ let ForgotPasswordInterior = ({onHide}) => {
     )
 }
 ForgotPasswordInterior = dynamic(
-    forgotModuleId, attachReducer(forgotPasswordReducer), runSaga(forgotPasswordSaga), dispatchAction(forgotPasswordActions.setIdle())
+    forgotPasswordId, attachReducer(forgotPasswordReducer), runSaga(forgotPasswordSaga), dispatchAction(forgotPasswordActions.setIdle())
 )(ForgotPasswordInterior);
-
-
-const ForgotPasswordModal = (props) => (
-    <Modal
-        {...props}
-        centered
-    >
-        <Modal.Header closeButton>
-            <Modal.Title>Forgot your password?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <ForgotPasswordInterior onHide={props.onHide}/>
-        </Modal.Body>
-    </Modal>
-)
 
 
 const ForgotPassword = () => {
     const [show, setShow] = useState(false);
+    const onHide = () => setShow(false)
 
     return (
         <>
             <span className="forgot-login text-secondary" onClick={() => setShow(true)}>
                 Forgot your username or password?
             </span>
-            <ForgotPasswordModal
+            <Modal
                 show={show}
-                onHide={() => setShow(false)}
-            />
+                onHide={onHide}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Forgot your password?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <ForgotPasswordInterior onHide={onHide}/>
+                </Modal.Body>
+            </Modal>
         </>
     )
 }
