@@ -95,7 +95,7 @@ const PageForgotPassConfirm = () => {
     return (
         <section className="pp-first-section bg-blue-waves d-flex flex-column align-items-center">
             <div className="flex-grow-1 p-3"/>
-            <div className="bg-white pp-dashed-border p-4 box-forgot-pass-confirm">
+            <div className="bg-white pp-box-shadow p-4 box-forgot-pass-confirm">
                 <h1>Password Reset Form</h1>
                 <p className="text-muted font-sans-serif">
                     Please enter your new password.
