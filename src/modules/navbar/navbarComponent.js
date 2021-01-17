@@ -2,10 +2,11 @@ import './navbar.css';
 
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {userIsLoggedIn, userIsMatcher} from "../user/userSelectors";
+import {userIsLoggedIn, userUsername} from "../user/userSelectors";
 
 const NavbarUserSection = () => {
     const userLoggedIn = useSelector(userIsLoggedIn);
+    const username = useSelector(userUsername);
 
     if (!userLoggedIn) {
         return (
@@ -27,7 +28,7 @@ const NavbarUserSection = () => {
                 </li>
                 <li className="nav-item mr-3">
                     <Link to="/profile" className="nav-link active">
-                        Me
+                        <span className="d-none d-sm-inline">{username}</span>
                         <i className="fas fa-user fa-lg ml-2"/>
                     </Link>
                 </li>

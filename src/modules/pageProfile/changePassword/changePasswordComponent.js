@@ -21,7 +21,6 @@ let ChangePasswordInterior = ({onHide}) => {
 
     const status = useSelector(changePasswordSelectors.status);
     const errors = useSelector(changePasswordSelectors.error);
-    console.log(errors);
 
     useEffect(() => {
         if(status === "success") onHide();

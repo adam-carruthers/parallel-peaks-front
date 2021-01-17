@@ -36,7 +36,7 @@ function* changePassword(action) {
             type: 'success',
             text: "Your password was successfully changed!",
             layout: 'bottomRight',
-            timeout: 3000
+            timeout: 5000
         }).show();
         yield put(changePasswordActions.success());  // This should close the modal
     } catch (e) {

@@ -40,7 +40,7 @@ function* refreshUser() {
             text: "We had trouble refreshing your profile. Is your internet okay? " +
                 "The website may not work, it may be worth refreshing and/or logging out and in again.",
             layout: 'bottomRight',
-            timeout: 5000
+            timeout: 10000
         }).show();
     }
 }
