@@ -75,7 +75,7 @@ const PageForgotPassConfirm = () => {
     // This component redirects if the page wasn't accessed with a token and uid
     // It also displays the more static outer code for the page
     const history = useHistory();
-    const locationQuery = useSelector(state => state.router?.location?.query);
+    const locationQuery = useSelector(state => state.router.location.query);
     const token = locationQuery?.token;
     const uid = locationQuery?.uid;
     const hasNeededDetails = token && uid;

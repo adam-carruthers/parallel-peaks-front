@@ -12,6 +12,7 @@ const PageConfirmEmail = () => {
     useEffect(() => {
         if(pathname !== "/confirm-email") {
             // The user has changed page and the token will be gone which will cause an error.
+            // We don't want an error we just want to wait until the next render where this page will unmount.
             return;
         }
 
