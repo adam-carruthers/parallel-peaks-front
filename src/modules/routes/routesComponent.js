@@ -6,6 +6,7 @@ import RouteNeedLogin from "./routeNeedLogin";
 import PageLogout from "../user/pageLogout";
 import PageProfile from "../pageProfile/pageProfileComponent";
 import PageForgotPassConfirm from "../pageForgotPassConfirm/pageForgotPassConfirmComponent";
+import PageConfirmEmail from "../pageConfirmEmail/pageConfirmEmailComponent";
 
 const Routes = () => (
     <Switch>
@@ -18,9 +19,15 @@ const Routes = () => (
         <Route path="/logout">
             <PageLogout/>
         </Route>
+
+        {/* WARNING - Below two routes are hard coded into backend emails */}
         <Route path="/forgot-password">
             <PageForgotPassConfirm/>
         </Route>
+        <Route path="/confirm-email">
+            <PageConfirmEmail/>
+        </Route>
+
         <RouteNeedLogin path="/profile">
             <PageProfile/>
         </RouteNeedLogin>
