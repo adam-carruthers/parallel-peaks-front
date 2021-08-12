@@ -8,8 +8,6 @@ import {routerMiddleware} from "connected-react-router";
 import {persistStore} from "redux-persist";
 
 import createRootReducer from "./rootReducer";
-import dynostore, {dynamicReducers} from "@redux-dynostore/core";
-import {dynamicSagas} from "@redux-dynostore/redux-saga";
 
 export default function createMyStore(history) {
     const sagaMiddleware = createSagaMiddleware();

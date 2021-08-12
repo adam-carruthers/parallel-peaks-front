@@ -3,12 +3,7 @@ import {getUser} from "../user/userSelectors";
 import ChangePassword from "./changePassword/changePasswordComponent";
 import DeleteAccount from "./deleteAccount/deleteAccountComponent";
 import DevicesLogout from "./devicesLogout/devicesLogoutComponent";
-
-const ADetail = ({name, value, colBreakpoint="col-12 col-md"}) => (
-    <div className={colBreakpoint}>
-        <b>{name}:</b> <span className="font-sans-serif d-block d-md-inline-block">{value || "Not Given"}</span>
-    </div>
-)
+import ADetail from "./aDetailComponent";
 
 const MyDetails = () => {
     const {username, email, first_name, last_name, is_staff, is_matcher, is_moderator} = useSelector(getUser);
@@ -21,7 +16,7 @@ const MyDetails = () => {
     const permissionString = permissions.join(", ")
 
     return (
-        <div className="pp-dashed-border mt-3 p-2 bg-white">
+        <div className="pp-dashed-border mt-3 p-2 bg-white w-100">
             <h5>
                 <span className="mr-2">Your Details</span>
                 <small className="font-sans-serif font-italic d-inline-block">

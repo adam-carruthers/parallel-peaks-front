@@ -1,10 +1,19 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {userId, userUsername} from "../user/userSelectors";
 import MyDetails from "./myDetailsComponent";
+import {useEffect} from "react";
+import {userActions} from "../user/userActions";
+import MyEntry from "./myEntryComponent";
 
 const PageProfile = () => {
     const username = useSelector(userUsername);
     const usrId = useSelector(userId);
+
+    // On page mount reload the user
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(userActions.refresh());
+    }, [dispatch])
 
     return (
         <div className="pp-first-section bg-blue-waves">
@@ -18,6 +27,7 @@ const PageProfile = () => {
                         You are logged in as user {username}#{usrId}.
                     </span>
                     <MyDetails/>
+                    <MyEntry/>
                 </div>
             </div>
         </div>

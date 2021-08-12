@@ -1,3 +1,10 @@
+/*
+This file is the entry point for the application.
+Context providing tags are placed here:
+- React redux provider
+- React router tag
+- Redux persistor
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
